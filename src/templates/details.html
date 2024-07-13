@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %} details {% endblock title %}
+
+
+{% block content %}
+<h2>Details</h2>
+<hr>
+
+<h4>name: {{product.name}}</h4>
+<h4>price: {{product.price}}</h4>
+<h4>stock: {{product.stock}}</h4>
+<img src="{{  url_for('products_view.get_image', image_name = product.image_name)}}">
+<br><br>
+
+<a href="{{url_for('products_view.list')}}">back</a>
+{% endblock content %}

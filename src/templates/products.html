@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %} products {% endblock title %}
+
+
+{% block content %}
+<h2>Products Page</h2>
+<hr>
+
+<!-- <p> {{ products }} </p> -->
+<table class="table table-bordered table-stripped table-hover products-table">
+    <thead>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Image</th>
+    </thead>
+    <tbody>
+        {% for p in products %}
+            <tr>
+                <td> <a href="{{url_for('products_view.details', id = p.id)}}">{{p.name}}</a> </td>
+                <td>{{p.price | round(2)}}$</td>
+                <td>{{p.stock}}</td>
+                <td><img src="{{ url_for('products_view.get_image', image_name = p.image_name)}}"></td>
+
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+
+{% endblock content %}
