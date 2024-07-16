@@ -13,7 +13,7 @@ html, body{
 }
 
 .layout, .layout > *{
-    border:1px solid lightcoral;
+    border:1px solid coral;
 }
 header, footer{
     grid-column: span 6;
@@ -46,3 +46,18 @@ main{
     height: 70px;
     border: 1px solid black;
 }  
+
+
+.fancy_form{
+    width: 400px;
+    margin: auto;
+    border: 1px solid;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    text-align: left;
+}
+
+.fancy_form > input{
+    margin-bottom: 20px;
+}

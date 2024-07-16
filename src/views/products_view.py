@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, send_file
+from flask import Blueprint, render_template, send_file, redirect, url_for, request
 from facade.products_facade import ProductsFacade
 from utils.image_handler import ImageHandler
 
@@ -22,8 +22,15 @@ def details(id):
     one_product = facade.get_one_product(id)
     return render_template("details.html", product = one_product)
 
+@products_blueprint.route("/products/new", methods=["GET", "POST"])
+def insert():
+    if(request.method=="GET"): return render_template("insert.html")
+    facade = ProductsFacade()
+    facade.add_product()
+    return redirect(url_for("products_view.list"))
 
-@products_blueprint.route("/products/images/<str:image_name>")
-def get_image(image_name):
-    image_path = ImageHandler.get_image_path(image_name)
-    return send_file(image_path)
+# @products_blueprint.route("/products/save", methods =["POST"])
+# def save():
+#     facade = ProductsFacade()
+#     facade.add_product()
+#     return redirect(url_for("products_view.list"))

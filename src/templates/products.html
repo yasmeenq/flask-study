@@ -22,7 +22,6 @@
                 <td>{{p.price | round(2)}}$</td>
                 <td>{{p.stock}}</td>
                 <td><img src="{{ url_for('products_view.get_image', image_name = p.image_name)}}"></td>
-
             </tr>
         {% endfor %}
 
