@@ -61,3 +61,16 @@ main{
 .fancy_form > input{
     margin-bottom: 20px;
 }
+
+a{
+    text-decoration: none;
+}
+
+.active{
+    border: 1px solid black;
+    padding: 10px;
+    background-color: pink;
+    color: green;
+    font-weight: bold;
+    font-size: xx-large;
+}

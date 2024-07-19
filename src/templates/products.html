@@ -21,7 +21,7 @@
                 <td> <a href="{{url_for('products_view.details', id = p.id)}}">{{p.name}}</a> </td>
                 <td>{{p.price | round(2)}}$</td>
                 <td>{{p.stock}}</td>
-                <td><img src="{{ url_for('products_view.get_image', image_name = p.image_name)}}"></td>
+                <td><img src="{{ url_for('products_view.get_image', image_name=( p.image_name if p.image_name else '---')  )}}"></td>
             </tr>
         {% endfor %}
 

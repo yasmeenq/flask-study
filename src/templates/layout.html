@@ -17,10 +17,10 @@
     <div class="layout">
         <header>{% include "nav.html" %}</header>
         <aside>
-            <a href="{{url_for('home_view.home')}}">home</a>
-            <a href="{{url_for('about_view.about')}}">about</a>
-            <a href="{{url_for('products_view.list')}}">products</a>
-            <a href="{{url_for('products_view.insert')}}">add product</a>
+            <a href="{{url_for('home_view.home')}}"  {% if active=='home' %} class='active'  {% endif %}    >home</a>
+            <a href="{{url_for('about_view.about')}}"  {% if active=='about' %} class='active'  {% endif %} >about</a>
+            <a href="{{url_for('products_view.list')}}"  {% if active=='products' %} class='active'  {% endif %} >products</a>
+            <a href="{{url_for('products_view.insert')}}" {% if active=='new' %} class='active'  {% endif %}>add product</a>
 
         </aside>
         <main>
@@ -34,7 +34,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-
+        <script src="{{url_for('static', filename='js/main.js')}}"></script>
     </div>
 </body>
 

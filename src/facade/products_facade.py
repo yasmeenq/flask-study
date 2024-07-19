@@ -20,5 +20,17 @@ class ProductsFacade:
         product = ProductModel(None, name, price, stock, image) #create product
         self.logic.add_product(product)
 
+    def update_product(self, id):
+        id = request.form.get("id")  #<input type=hidden...name = "id">
+        name = request.form.get("name")   #<input type=text...name = "name">
+        price = request.form.get("price")   #<input type=number...name = "price">
+        stock = request.form.get("stock")   #<input type=number...name = "stock">
+        image = request.files["image"]
+        product = ProductModel(id, name, price, stock, image) #create product
+        self.logic.update_product(product)
+
+    def delete_product(self, id):
+        return self.logic.delete_product(id)
+
     def close(self):
         self.logic.close()

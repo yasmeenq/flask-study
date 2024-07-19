@@ -10,8 +10,12 @@
 <h4>name: {{product.name}}</h4>
 <h4>price: {{product.price}}</h4>
 <h4>stock: {{product.stock}}</h4>
-<img src="{{  url_for('products_view.get_image', image_name = product.image_name)}}">
+<img src="{{  url_for('products_view.get_image', image_name = (product.image_name if product.image_name else '---' )  )}}">
 <br><br>
 
 <a href="{{url_for('products_view.list')}}">back</a>
+<span>|</span>
+<a href="{{url_for('products_view.edit', id = product.id )}}">edit</a>
+<span>|</span>
+<a onclick="confirmDelete()" href="{{url_for('products_view.delete', id = product.id )}}">delete</a>
 {% endblock content %}

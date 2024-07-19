@@ -8,7 +8,7 @@ products_blueprint = Blueprint("products_view", __name__)
 def list():
     facade = ProductsFacade()
     all_products = facade.get_all_products()
-    return render_template("products.html", products = all_products) #take all products to the html page to show them on the page
+    return render_template("products.html",active="products", products = all_products) #take all products to the html page to show them on the page
 
 
 @products_blueprint.route("/products/images/<string:image_name>")
@@ -24,7 +24,8 @@ def details(id):
 
 @products_blueprint.route("/products/new", methods=["GET", "POST"])
 def insert():
-    if(request.method=="GET"): return render_template("insert.html")
+    if(request.method=="GET"): return render_template("insert.html", active="new")
+    #else "POST" when u click the button add
     facade = ProductsFacade()
     facade.add_product()
     return redirect(url_for("products_view.list"))
@@ -34,3 +35,21 @@ def insert():
 #     facade = ProductsFacade()
 #     facade.add_product()
 #     return redirect(url_for("products_view.list"))
+
+@products_blueprint.route("/products/edit/<int:id>", methods=["GET", "POST"])
+def edit(id):
+    facade = ProductsFacade()
+    if(request.method=="GET"): 
+        one_product = facade.get_one_product(id) 
+        return render_template("edit.html", product = one_product )
+    
+    facade.update_product(id)
+    return redirect(url_for("products_view.list"))
+
+@products_blueprint.route("/products/delete/<int:id>")
+def delete(id):
+    facade = ProductsFacade()
+    facade.delete_product(id)
+    return redirect(url_for("products_view.list"))
+
+
