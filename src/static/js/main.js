@@ -6,4 +6,11 @@ function confirmDelete(){
         event.preventDefault()
     }
 }
-    
+
+
+const errorSpan = document.querySelector('.error');
+if(errorSpan){
+    setTimeout(()=>{
+        errorSpan.parentNode.removeChild(errorSpan)
+    },4000); 
+}

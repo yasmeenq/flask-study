@@ -1,6 +1,8 @@
 from logic.products_logic import ProductsLogic
 from models.products_model import ProductModel
 from flask import request
+from models.client_error import *
+
 
 class ProductsFacade:
     def __init__(self):
@@ -10,7 +12,9 @@ class ProductsFacade:
         return self.logic.get_all_products()
     
     def get_one_product(self, id):
-        return self.logic.get_one_product(id)
+        product = self.logic.get_one_product(id)
+        if not product: raise ResourceNotFoundError(id)
+        return product
     
     def add_product(self):
         name = request.form.get("name")   #<input type=text...name = "name">
@@ -18,6 +22,8 @@ class ProductsFacade:
         stock = request.form.get("stock")   #<input type=number...name = "stock">
         image = request.files["image"]
         product = ProductModel(None, name, price, stock, image) #create product
+        error = product.validate_insert()
+        if error: raise ValidationError(error)
         self.logic.add_product(product)
 
     def update_product(self, id):
@@ -27,6 +33,8 @@ class ProductsFacade:
         stock = request.form.get("stock")   #<input type=number...name = "stock">
         image = request.files["image"]
         product = ProductModel(id, name, price, stock, image) #create product
+        error = product.validate_edit()
+        if error: raise ValidationError(error)
         self.logic.update_product(product)
 
     def delete_product(self, id):

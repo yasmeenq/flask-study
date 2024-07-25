@@ -2,7 +2,7 @@ from pathlib import Path
 from flask import current_app
 from uuid import uuid4
 
-class ImageHandler:
+class ImageHandler:  #this deals with the images on the disc only not with database
     @staticmethod
     def save_image(image): #image is a file
         if not image : return None

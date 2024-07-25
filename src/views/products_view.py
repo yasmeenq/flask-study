@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, send_file, redirect, url_for, request
 from facade.products_facade import ProductsFacade
 from utils.image_handler import ImageHandler
+from models.client_error import *
+
 
 products_blueprint = Blueprint("products_view", __name__)
 
@@ -19,16 +21,23 @@ def get_image(image_name):
 @products_blueprint.route("/products/details/<int:id>")
 def details(id):
     facade = ProductsFacade()
-    one_product = facade.get_one_product(id)
-    return render_template("details.html", product = one_product)
+    try:
+        one_product = facade.get_one_product(id)
+        return render_template("details.html", product = one_product)
+    except ResourceNotFoundError as err:
+        return render_template('404.html', error=err.message)
+
 
 @products_blueprint.route("/products/new", methods=["GET", "POST"])
 def insert():
-    if(request.method=="GET"): return render_template("insert.html", active="new")
-    #else "POST" when u click the button add
-    facade = ProductsFacade()
-    facade.add_product()
-    return redirect(url_for("products_view.list"))
+    try:
+        if(request.method=="GET"): return render_template("insert.html", active="new")
+        #else "POST" when u click the button add
+        facade = ProductsFacade()
+        facade.add_product()
+        return redirect(url_for("products_view.list"))
+    except ValidationError as err:
+        return render_template('insert.html',error=err)
 
 # @products_blueprint.route("/products/save", methods =["POST"])
 # def save():
@@ -38,13 +47,16 @@ def insert():
 
 @products_blueprint.route("/products/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
-    facade = ProductsFacade()
-    if(request.method=="GET"): 
-        one_product = facade.get_one_product(id) 
-        return render_template("edit.html", product = one_product )
-    
-    facade.update_product(id)
-    return redirect(url_for("products_view.list"))
+    try:
+        facade = ProductsFacade()
+        if(request.method=="GET"): 
+            one_product = facade.get_one_product(id) 
+            return render_template("edit.html", product = one_product )
+        
+        facade.update_product(id)
+        return redirect(url_for("products_view.list"))
+    except ValidationError as err:
+        return render_template('edit.html', error=err)
 
 @products_blueprint.route("/products/delete/<int:id>")
 def delete(id):

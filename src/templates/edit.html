@@ -10,14 +10,14 @@
     <input type="hidden" value="{{product.id}}" name="id" class="form-control">
 
     <label>Name:</label> 
-    <input type="text" value="{{product.name}}" name="name" class="form-control">
+    <input type="text" value="{{product.name}}" name="name" required  class="form-control" minlength="2" maxlength="100">
+    <br><br>
     <br><br>
     <label>Price:</label>
-    <input type="number" value="{{product.price}}" name="price" step="0.01" class="form-control">
+    <input type="number" value="{{product.price}}" name="price" required  step="0.01" class="form-control" min="0" max="10000">
     <br><br>
     <label>Stock:</label>
-    <input type="number" value="{{product.stock}}" name="stock" class="form-control">
-    <br><br>
+    <input type="number" value="{{product.stock}}" name="stock" required  step="0.01" class="form-control" min="0" max="10000">
     <label>Image:</label>
     <input type="file" name="image" accept="image/*" class="form-control">   
     <br><br>

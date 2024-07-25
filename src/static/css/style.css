@@ -13,7 +13,7 @@ html, body{
 }
 
 .layout, .layout > *{
-    border:1px solid coral;
+    border:1px solid navy;
 }
 header, footer{
     grid-column: span 6;
@@ -69,8 +69,19 @@ a{
 .active{
     border: 1px solid black;
     padding: 10px;
-    background-color: pink;
+    background-color: lightgoldenrodyellow;
     color: green;
     font-weight: bold;
     font-size: xx-large;
+}
+
+.error{
+    font-size: x-large;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
 }

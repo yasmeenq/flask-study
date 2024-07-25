@@ -16,11 +16,13 @@
 <body>
     <div class="layout">
         <header>{% include "nav.html" %}</header>
+        {% if error%} <span class="error">{{error}}</span> {% endif %}
         <aside>
-            <a href="{{url_for('home_view.home')}}"  {% if active=='home' %} class='active'  {% endif %}    >home</a>
-            <a href="{{url_for('about_view.about')}}"  {% if active=='about' %} class='active'  {% endif %} >about</a>
-            <a href="{{url_for('products_view.list')}}"  {% if active=='products' %} class='active'  {% endif %} >products</a>
-            <a href="{{url_for('products_view.insert')}}" {% if active=='new' %} class='active'  {% endif %}>add product</a>
+            <a href="{{url_for('auth_view.register')}}"  {% if active=='register' %} class='active'  {% endif %}> Register</a>
+            <a href="{{url_for('home_view.home')}}"  {% if active=='home' %} class='active'  {% endif %}>  home</a>
+            <a href="{{url_for('about_view.about')}}"  {% if active=='about' %} class='active'  {% endif %}>  about</a>
+            <a href="{{url_for('products_view.list')}}"  {% if active=='products' %} class='active'  {% endif %}>  products</a>
+            <a href="{{url_for('products_view.insert')}}" {% if active=='new' %} class='active'  {% endif %}>  add product</a>
 
         </aside>
         <main>
