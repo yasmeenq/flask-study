@@ -8,16 +8,16 @@
 <hr>
 <form method="post" class="fancy_form" >
     <label>First Name:</label> 
-    <input type="text" name="firstname" required  class="form-control" minlength="2" maxlength="20">
+    <input type="text" value="{{user.firstname}}" name="firstname" required  class="form-control" minlength="2" maxlength="20">
     <br><br>
     <label>Last Name:</label> 
-    <input type="text" name="lastname" required  class="form-control" minlength="2" maxlength="20">
+    <input type="text" value="{{user.lastname}}" name="lastname" required  class="form-control" minlength="2" maxlength="20">
     <br><br>
     <label>Email:</label>
-    <input type="email" name="email" required class="form-control" minlength="2" maxlength="20">
+    <input type="email" value="{{user.email}}" name="email" required class="form-control" minlength="2" maxlength="20">
     <br><br>
     <label>Password:</label>
-    <input type="password" name="password"  required  class="form-control" minlength="5" maxlength="20">
+    <input type="password" value="{{user.password}}" name="password"  required  class="form-control" minlength="5" maxlength="20">
     <br><br>
 
     <button class="btn btn-primary w-100">Register</button>

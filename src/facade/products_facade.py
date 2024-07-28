@@ -23,7 +23,7 @@ class ProductsFacade:
         image = request.files["image"]
         product = ProductModel(None, name, price, stock, image) #create product
         error = product.validate_insert()
-        if error: raise ValidationError(error)
+        if error: raise ValidationError(error, model={})
         self.logic.add_product(product)
 
     def update_product(self, id):

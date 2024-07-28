@@ -14,8 +14,10 @@
 <br><br>
 
 <a href="{{url_for('products_view.list')}}">back</a>
+{%if current_user.roleID== admin%}
 <span>|</span>
 <a href="{{url_for('products_view.edit', id = product.id )}}">edit</a>
 <span>|</span>
 <a onclick="confirmDelete()" href="{{url_for('products_view.delete', id = product.id )}}">delete</a>
+{% endif %}
 {% endblock content %}

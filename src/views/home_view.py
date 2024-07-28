@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session
 
 home_blueprint = Blueprint('home_view', __name__)
 
 @home_blueprint.route("/")
 @home_blueprint.route("/home")
 def home():
-    return render_template("home.html", active="home")
+
+    user = session.get('current_user')
+    return render_template("home.html", active="home", current_user= user)

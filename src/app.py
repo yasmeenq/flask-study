@@ -7,14 +7,11 @@ from logging import getLogger, ERROR
 
 
 app = Flask(__name__)
-
+app.secret_key = "your_secret_key"  #a secret key for the sessions#how many sessions do we have? maybe a thousand #how many uses are logged in
 app.register_blueprint(home_blueprint)
 app.register_blueprint(about_blueprint)
 app.register_blueprint(products_blueprint)
 app.register_blueprint(auth_blueprint)
-
-
-
 
 
 @app.errorhandler(404)
@@ -27,5 +24,10 @@ def catch_all(error):
     print(error)
     return render_template('500.html', error=error)
 
-
+# werkzeug - ארגז כלים 
 getLogger("werkzeug").setLevel(ERROR)
+
+
+#admin - delete
+#user login - update, insert
+#no login - view only

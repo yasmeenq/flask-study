@@ -14,3 +14,9 @@ if(errorSpan){
         errorSpan.parentNode.removeChild(errorSpan)
     },4000); 
 }
+
+function saveUser(user){
+    let email = document.getElementById('email').value;
+    localStorage.setItem("email", email)
+    alert(user.firstname);
+}
