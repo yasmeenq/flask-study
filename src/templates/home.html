@@ -4,9 +4,12 @@
 
 
 {% block content %}
-<h2>Home Page</h2>
-<h2>roleID: {{current_user.roleID}}</h2>
+<h1>Home</h1>
 <h2>Welcome {{current_user.firstname}}!</h2>
-<hr>
+<h2>roleID: {{current_user.roleID}} {%if not current_user%} Guest {% endif %} </h2>
 
+<hr>
+{%if current_user.roleID == 2%}<h3>You Can Add Products </h3>{% endif %} 
+{%if current_user.roleID == 1%} <h3>You Can Edit or Delete Products</h3>  {% endif %} 
+{%if not current_user%} <h3>unless you login, you can only view products</h3> {% endif %}
 {% endblock content %}

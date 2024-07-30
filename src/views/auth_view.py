@@ -30,3 +30,8 @@ def login():
 
     # except AuthError as err:
     #     return render_template('login.html', error = err.message)
+
+@auth_blueprint.route('/logout')
+def logout():
+    auth_facade.logout()
+    return redirect(url_for('home_view.home'))

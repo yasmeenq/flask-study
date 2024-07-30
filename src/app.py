@@ -4,10 +4,10 @@ from views.about_view import about_blueprint
 from views.products_view import products_blueprint
 from views.auth_view import auth_blueprint
 from logging import getLogger, ERROR
-
+from utils.app_config import AppConfig
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key"  #a secret key for the sessions#how many sessions do we have? maybe a thousand #how many uses are logged in
+app.secret_key = AppConfig.session_secret_key  #a secret key for the sessions#how many sessions do we have? maybe a thousand #how many uses are logged in
 app.register_blueprint(home_blueprint)
 app.register_blueprint(about_blueprint)
 app.register_blueprint(products_blueprint)

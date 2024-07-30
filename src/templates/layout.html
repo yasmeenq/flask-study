@@ -30,7 +30,7 @@
             <a href="{{ url_for('about_view.about') }}"   {%  if active=='about' %} class='active' {% endif%} >About</a>
             <a href="{{ url_for('products_view.list') }}"   {%  if active=='products' %} class='active' {% endif%}>Products</a>
             <a href="{{ url_for('products_view.insert') }}"  {%  if active=='new' %} class='active' {% endif%}>Add Products</a>
-            <a href="{{ url_for('home_view.home') }}"  {%  if active=='logout' %} class='active' {% endif%}>Log out</a>
+            <a href="{{ url_for('auth_view.logout') }}"  {%  if active=='logout' %} class='active' {% endif%}>Log out</a>
 
 
         </aside>

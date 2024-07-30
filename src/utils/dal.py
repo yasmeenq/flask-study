@@ -1,13 +1,15 @@
 import mysql.connector
+from utils.app_config import AppConfig
 
 class DAL:
     #constructor 
     def __init__(self):
         self.connection = mysql.connector.connect(
-        host="localhost",
-        user="root", password="1234", 
-        database="classicmodels") # localhost = current machine.
-
+        host= AppConfig.mysql_host,
+        user= AppConfig.mysql_user,
+        password= AppConfig.mysql_password, 
+        database= AppConfig.mysql_database)# localhost = current machine.
+ 
     def get_table(self, sql, params=None):
         with  self.connection.cursor(dictionary=True) as cursor:
             cursor.execute(sql, params)
