@@ -4,7 +4,7 @@ from utils.image_handler import ImageHandler
 from models.client_error import *
 from facade.auth_facade import *
 from models.role_model import *
-
+from utils.loggger import Logger
 
 products_blueprint = Blueprint("products_view", __name__)
 
@@ -30,6 +30,7 @@ def details(id):
         one_product = products_facade.get_one_product(id)
         return render_template("details.html", product = one_product, current_user = session.get('current_user'), admin=RoleModel.Admin.value)
     except ResourceNotFoundError as err:
+        Logger.log(err.message)
         return render_template('404.html', error=err.message)
 
 

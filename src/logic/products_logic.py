@@ -24,7 +24,7 @@ class ProductsLogic:
         old_image_name = self.get_old_image_name(product.id)
         image_name = ImageHandler.update_image(old_image_name, product.image)
         sql = "UPDATE productsflask SET name=%s, price=%s, stock=%s, image_name=%s WHERE id=%s"
-        self.dal.update(sql, (product.name, product.price, product.stock, image_name, product.id))
+        return self.dal.update(sql, (product.name, product.price, product.stock, image_name, product.id))
     
     def get_old_image_name(self, id):
         sql = "SELECT image_name FROM productsflask WHERE id=%s"

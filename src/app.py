@@ -3,8 +3,11 @@ from views.home_view import home_blueprint
 from views.about_view import about_blueprint
 from views.products_view import products_blueprint
 from views.auth_view import auth_blueprint
+from views.api_view import api_blueprint
 from logging import getLogger, ERROR
 from utils.app_config import AppConfig
+from utils.loggger import Logger
+from models.status_code import StatusCode
 
 app = Flask(__name__)
 app.secret_key = AppConfig.session_secret_key  #a secret key for the sessions#how many sessions do we have? maybe a thousand #how many uses are logged in
@@ -12,15 +15,18 @@ app.register_blueprint(home_blueprint)
 app.register_blueprint(about_blueprint)
 app.register_blueprint(products_blueprint)
 app.register_blueprint(auth_blueprint)
+app.register_blueprint(api_blueprint)
 
 
 @app.errorhandler(404)
 def page_not_found(error):
+    Logger.log(str(error))
     return render_template("404.html") 
 
 #always use this for safety 
 @app.errorhandler(Exception) #for all other errors that im not aware of 
 def catch_all(error):
+    Logger.log(str(error))
     print(error)
     return render_template('500.html', error=error)
 

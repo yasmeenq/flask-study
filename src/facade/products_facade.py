@@ -35,7 +35,7 @@ class ProductsFacade:
         product = ProductModel(id, name, price, stock, image) #create product
         error = product.validate_edit()
         if error: raise ValidationError(error)
-        self.logic.update_product(product)
+        return self.logic.update_product(product)
 
     def delete_product(self, id):
         return self.logic.delete_product(id)
